@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TASK 2</title>
+</head>
+<body>
+    <input id="radiusInput" type="text" placeholder="Радиус"><br/>
+    <input id="heightInput" type="text" placeholder="Высота"><br/>
+    <button id="calculateBtn">=</button>
+
+    <script>
+        let radiusInput = document.querySelector("#radiusInput");
+        let heightInput = document.querySelector("#heightInput");
+        let calculateBtn = document.querySelector("#calculateBtn");
+
+        calculateBtn.addEventListener("click", function () 
+        {
+            let volume = Math.PI * Math.pow(radiusInput.value, 2) * heightInput.value;
+            document.write(`V = ${volume.toFixed(2)}`);
+        });
+    </script>
+</body>
+</html>

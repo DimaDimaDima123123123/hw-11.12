@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TASK 3</title>
+
+    <style>
+        .warning
+         {
+            color: red;
+            display: none;
+        }
+        .active 
+        {
+            display: block;
+        }
+        .highlight
+         {
+            border: 2px solid red;
+        }
+    </style>
+</head>
+<body>
+    Операнд 1: <input id="firstOperand" type="text"> <br />
+    <span id="firstOperandError" class="warning">Пожалуйста, введите значение</span> <br />
+
+    Операнд 2: <input id="secondOperand" type="text"> <br />
+    <span id="secondOperandError" class="warning">Пожалуйста, введите значение</span> <br />
+
+    <button id="addButton">+</button>
+    <button id="subtractButton">-</button>
+    <button id="multiplyButton">*</button>
+    <button id="divideButton">/</button>
+    <button id="resetButton">Сбросить</button>
+
+    <script>
+        const firstOperandInput = document.getElementById("firstOperand");
+        const secondOperandInput = document.getElementById("secondOperand");
+        const firstOperandError = document.getElementById("firstOperandError");
+        const secondOperandError = document.getElementById("secondOperandError");
+
+        const addButton = document.getElementById("addButton");
+        const subtractButton = document.getElementById("subtractButton");
+        const multiplyButton = document.getElementById("multiplyButton");
+        const divideButton = document.getElementById("divideButton");
+        const resetButton = document.getElementById("resetButton");
+
+        const inputs = [firstOperandInput, secondOperandInput];
+        const errors = [firstOperandError, secondOperandError];
+
+        function validateInputs()
+         {
+            let hasError = false;
+
+            inputs.forEach((input, index) =>
+             {
+                if (input.value === "") 
+                {
+                    input.classList.add("highlight");
+                    errors[index].classList.add("active");
+                    hasError = true;
+                } 
+                else 
+                {
+                    input.classList.remove("highlight");
+                    errors[index].classList.remove("active");
+                }
+            });
+
+            return !hasError;
+        }
+
+        // +
+        addButton.addEventListener("click", function () 
+        {
+            if (validateInputs()) 
+            {
+                alert(Number(firstOperandInput.value) + Number(secondOperandInput.value));
+            }
+        });
+
+        // -
+        subtractButton.addEventListener("click", function () 
+        {
+            if (validateInputs())
+             {
+                alert(Number(firstOperandInput.value) - Number(secondOperandInput.value));
+            }
+        });
+
+        // *
+        multiplyButton.addEventListener("click", function () 
+        {
+            if (validateInputs()) 
+            {
+                alert(Number(firstOperandInput.value) * Number(secondOperandInput.value));
+            }
+        });
+
+        // /
+        divideButton.addEventListener("click", function () 
+        {
+            if (validateInputs())
+             {
+                alert(Number(firstOperandInput.value) / Number(secondOperandInput.value));
+            }
+        });
+
+        resetButton.addEventListener("click", function () 
+        {
+            firstOperandInput.value = "0";
+            secondOperandInput.value = "0";
+            inputs.forEach(input => input.classList.remove("highlight"));
+            errors.forEach(error => error.classList.remove("active"));
+        });
+    </script>
+</body>
+</html>
